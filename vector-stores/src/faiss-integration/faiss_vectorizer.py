@@ -10,8 +10,8 @@ _ = load_dotenv(find_dotenv())
 class FaissVectorizer:
     def __init__(self):
         # dimensions of text-ada-embedding-002
-        d = 1536
-        faiss_index = faiss.IndexFlatL2(d)
+        dim = 1536
+        faiss_index = faiss.IndexFlatL2(dim)
         # load documents
         documents = SimpleDirectoryReader(input_dir='/Users/pavanmantha/Pavans/PracticeExamples/DataScience_Practice/LLMs/llama_index_tutorials/vector-stores/data',required_exts=['.pdf']).load_data()
         # create storage_context and faiss_index
