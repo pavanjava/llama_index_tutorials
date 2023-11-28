@@ -1,6 +1,8 @@
+import os
+
 from dotenv import load_dotenv, find_dotenv
 from llama_index.callbacks import CallbackManager
-from llama_index.chat_engine.types import ChatMode
+# from llama_index.chat_engine.types import ChatMode
 from llama_index.llms import OpenAI
 from llama_index.vector_stores import MilvusVectorStore
 from llama_index import (
@@ -20,7 +22,7 @@ documents = SimpleDirectoryReader(input_dir="/Users/pavanmantha/Pavans/PracticeE
 callbackHandler = OpenInferenceTraceCallbackHandler()
 
 collection_name: str = 't55_product_specs'
-db_uri: str = 'http://localhost:19530'
+db_uri: str = os.getenv('MILVUS_URI')
 
 
 def load_defaults():
@@ -67,10 +69,9 @@ If needed use the below code as per the need.
 # result = query_engine.query(str_or_query_bundle="What is the educational qualification of Pavan Kumar ?")
 # print(result)
 
+# query_engine = load_gpt35_turbo().as_chat_engine(verbose=True, chat_mode=ChatMode.REACT)
+# result = query_engine.chat("What are the domains the Generative AI used in ?")
+# print(f'Bot: {result}')
 
-query_engine = load_gpt35_turbo().as_chat_engine(verbose=True, chat_mode=ChatMode.REACT)
-result = query_engine.chat("What are the domains the Generative AI used in ?")
-print(f'Bot: {result}')
-#
 # result = query_engine.chat("of those, what is his latest company?")
 # print(f'Bot: {result}')
